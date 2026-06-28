@@ -1,7 +1,7 @@
 import express from "express";
 import "dotenv/config";
 import { connectDB } from "./lib/db.js";
-import { clerkMinddleware } from "@clerk/express";
+import { clerkMiddleware } from "@clerk/express";
 import cors from "cors";
 import path from "path";
 import fs from "fs";
@@ -19,7 +19,7 @@ app.use(cors({
     origin: frontend,
     credentials: true
 }));
-app.use(clerkMinddleware());
+app.use(clerkMiddleware());
 
 app.get("/check", (req, res) => {
     res.status(200).send("hello");
