@@ -1,5 +1,5 @@
 # Stage 1: Build the frontend
-FROM node:18-alpine AS frontend-builder
+FROM node:22-alpine AS frontend-builder
 WORKDIR /app/frontend
 
 # Install dependencies and build the frontend
@@ -11,7 +11,7 @@ COPY frontend/chat_app/ ./
 RUN npm run build
 
 # Stage 2: Build the backend and serve both
-FROM node:18-alpine
+FROM node:22-alpine
 WORKDIR /app/backend
 
 # Copy backend package files and install dependencies
