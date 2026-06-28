@@ -1,7 +1,6 @@
 import React from 'react'
 import { Show, SignInButton, SignUpButton, UserButton } from '@clerk/react'
 
-
 function App() {
   return (
     <div>
