@@ -8,6 +8,11 @@ COPY frontend/chat_app/package*.json ./chat_app/
 WORKDIR /app/frontend/chat_app
 RUN npm install
 COPY frontend/chat_app/ ./
+
+# Pass the Clerk publishable key at build time so Vite can embed it
+ARG VITE_CLERK_PUBLISHABLE_KEY
+ENV VITE_CLERK_PUBLISHABLE_KEY=$VITE_CLERK_PUBLISHABLE_KEY
+
 RUN npm run build
 
 # Stage 2: Build the backend and serve both
