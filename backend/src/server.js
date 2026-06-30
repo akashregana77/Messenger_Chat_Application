@@ -6,11 +6,15 @@ import cors from "cors";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
+import clerkWebhook from './webhooks/clerk.js';
 
+const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const app = express();
+app.use("/api/webhooks/clerk",express.raw({type:"application/json"}),clerkWebhook)
+
+
 const port = process.env.PORT || 5000;
 const frontend = process.env.FRONTEND_URL;
 
