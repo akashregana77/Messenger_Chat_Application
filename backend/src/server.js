@@ -7,6 +7,7 @@ import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
 import clerkWebhook from './webhooks/clerk.js';
+import authRoutes from './routers/auth.route.js';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -25,6 +26,8 @@ app.use(cors({
 }));
 app.use(clerkMiddleware());
 
+app.use("/api/auth",authRoutes);
+
 app.get("/check", (req, res) => {
     res.status(200).send("hello");
 });
@@ -37,6 +40,7 @@ if (fs.existsSync(publicDir)) {
         res.sendFile(path.resolve(publicDir, "index.html"));
     });
 }
+
 
 app.listen(port, () => {
     connectDB();
