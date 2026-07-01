@@ -8,6 +8,7 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import clerkWebhook from './webhooks/clerk.js';
 import authRoutes from './routers/auth.route.js';
+import messageRoutes from './routers/message.route.js';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -27,6 +28,7 @@ app.use(cors({
 app.use(clerkMiddleware());
 
 app.use("/api/auth",authRoutes);
+app.use("/api/messages",messageRoutes);
 
 app.get("/check", (req, res) => {
     res.status(200).send("hello");
