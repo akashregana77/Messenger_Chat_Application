@@ -9,8 +9,7 @@ import { fileURLToPath } from "url";
 import clerkWebhook from './webhooks/clerk.js';
 import authRoutes from './routers/auth.route.js';
 import messageRoutes from './routers/message.route.js';
-
-const app = express();
+import { app, server } from "./lib/socket.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -44,7 +43,7 @@ if (fs.existsSync(publicDir)) {
 }
 
 
-app.listen(port, () => {
+server.listen(port, () => {
     connectDB();
     console.log(`server is running in the port :${port}`);
 });
